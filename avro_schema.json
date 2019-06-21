@@ -1,0 +1,192 @@
+﻿{
+  "name": "MyClass",
+  "type": "array",
+  "namespace": "com.acme.avro",
+  "items": {
+    "name": "MyClass_record",
+    "type": "record",
+    "fields": [
+      {
+        "name": "address",
+        "type": "string"
+      },
+      {
+        "name": "user_id",
+        "type": "string"
+      },
+      {
+        "name": "umb_topic",
+        "type": "string"
+      },
+      {
+        "name": "correlation_id",
+        "type": "string"
+      },
+      {
+        "name": "annotations",
+        "type": {
+          "name": "annotations",
+          "type": "record",
+          "fields": [
+            {
+              "name": "x-opt-jms-dest",
+              "type": "int"
+            },
+            {
+              "name": "x-opt-to-type",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      {
+        "name": "body",
+        "type": {
+          "name": "body",
+          "type": "record",
+          "fields": [
+            {
+              "name": "new",
+              "type": "string"
+            },
+            {
+              "name": "old",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            {
+              "name": "attribute",
+              "type": "string"
+            },
+            {
+              "name": "info",
+              "type": {
+                "name": "info",
+                "type": "record",
+                "fields": [
+                  {
+                    "name": "owner",
+                    "type": "int"
+                  },
+                  {
+                    "name": "parent",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  {
+                    "name": "request",
+                    "type": "string"
+                  },
+                  {
+                    "name": "method",
+                    "type": "string"
+                  },
+                  {
+                    "name": "id",
+                    "type": "int"
+                  },
+                  {
+                    "name": "label",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  {
+                    "name": "state",
+                    "type": "int"
+                  },
+                  {
+                    "name": "arch",
+                    "type": "string"
+                  },
+                  {
+                    "name": "priority",
+                    "type": "int"
+                  },
+                  {
+                    "name": "channel_id",
+                    "type": "int"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "timestamp",
+              "type": "int",
+              "logicalType": "date"
+            }
+          ]
+        }
+      },
+      {
+        "name": "msg_id",
+        "type": "string"
+      },
+      {
+        "name": "priority",
+        "type": "int"
+      },
+      {
+        "name": "properties",
+        "type": {
+          "name": "properties",
+          "type": "record",
+          "fields": [
+            {
+              "name": "parent",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            {
+              "name": "new",
+              "type": "string"
+            },
+            {
+              "name": "method",
+              "type": "string"
+            },
+            {
+              "name": "old",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            {
+              "name": "amq6100_originalDestination",
+              "type": "string"
+            },
+            {
+              "name": "amq6100_destination",
+              "type": "string"
+            },
+            {
+              "name": "attribute",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "int"
+            },
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      {
+        "name": "timestamp",
+        "type": "int",
+        "logicalType": "date"
+      }
+    ]
+  }
+}
