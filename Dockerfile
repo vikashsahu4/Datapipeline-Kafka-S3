@@ -2,7 +2,7 @@ FROM centos
 
 USER root
 
-ENV LOG_DIR=/var/log/confluent <---you may need to change this based on the information you are getting from the logs
+ENV LOG_DIR=/var/log/confluent 
 
 EXPOSE 8081
 
@@ -19,6 +19,6 @@ RUN yum install -y --setopt=tsflags=nodocs confluent-schema-registry && \
   chown -R :0 /var/log/confluent -R && \
   yum clean all -y
 
-COPY ./config/schema-registry.properties /etc/schema-registry/ <<--- You may not need this you can probably remove it.
+COPY ./config/schema-registry.properties /etc/schema-registry/ 
 
 CMD ["schema-registry-start", "/etc/schema-registry/schema-registry.properties"]
