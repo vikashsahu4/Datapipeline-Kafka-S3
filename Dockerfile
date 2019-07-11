@@ -2,6 +2,14 @@ FROM centos
 
 USER root
 
+LABEL maintainer.group="Open DataHub" \
+	  maintainer.email="vsahu@redhat.com"
+
+RUN yum install -y \
+       java-1.8.0-openjdk \
+       java-1.8.0-openjdk-devel
+       
+
 ENV LOG_DIR=/var/log/confluent 
 
 EXPOSE 8081
