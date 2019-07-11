@@ -8,7 +8,7 @@ EXPOSE 8081
 
 RUN rpm --import https://packages.confluent.io/rpm/5.2/archive.key 
 
-COPY ./confluent.repo /etc/yum.repos.d/ <<<< THIS IS IMPORTANT. YOU NEED TO GIVE YUM THE CONFLUENT REPO INFO.
+COPY ./confluent.repo /etc/yum.repos.d/ 
 
 RUN yum install -y --setopt=tsflags=nodocs confluent-schema-registry && \
   chown -R :0 /usr/bin/schema-registry-start -R && \
