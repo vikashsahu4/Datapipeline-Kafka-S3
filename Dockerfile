@@ -19,7 +19,7 @@ COPY ./confluent.repo /etc/yum.repos.d/
 
 RUN yum clean all && yum install confluent-platform-2.12 -y
 
-COPY ./config/schema-registry.properties /etc/schema-registry/
+COPY ./schema-registry.properties /etc/schema-registry/
 
 
 CMD ["schema-registry-start", "/etc/schema-registry/schema-registry.properties"]
