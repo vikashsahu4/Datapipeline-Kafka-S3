@@ -19,6 +19,6 @@ RUN yum install -y --setopt=tsflags=nodocs confluent-schema-registry && \
   chown -R :0 /var/log/confluent -R && \
   yum clean all -y
 
-COPY ./config/schema-registry.properties /etc/schema-registry/ 
+COPY ./schema-registry.properties /etc/schema-registry/ 
 
 CMD ["schema-registry-start", "/etc/schema-registry/schema-registry.properties"]
