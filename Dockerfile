@@ -2,24 +2,23 @@ FROM centos
 
 USER root
 
-RUN yum install -y \
-       java-1.8.0-openjdk \
-       java-1.8.0-openjdk-devel
+ENV LOG_DIR=/var/log/confluent <---you may need to change this based on the information you are getting from the logs
 
-ENV JAVA_HOME /etc/alternatives/jre
+EXPOSE 8081
 
-LABEL maintainer.group="Open DataHub" \
-	  maintainer.email="vsahu@redhat.com"
+RUN rpm --import https://packages.confluent.io/rpm/5.2/archive.key 
 
-RUN yum install curl which -y
+COPY ./confluent.repo /etc/yum.repos.d/ <<<< THIS IS IMPORTANT. YOU NEED TO GIVE YUM THE CONFLUENT REPO INFO.
 
-RUN rpm --import https://packages.confluent.io/rpm/5.2/archive.key
+RUN yum install -y --setopt=tsflags=nodocs confluent-schema-registry && \
+  chown -R :0 /usr/bin/schema-registry-start -R && \
+  chown -R :0 /usr/bin/schema-registry-stop -R && \
+  chown -R :0 /usr/bin/schema-registry-run-class -R && \
+  chown -R :0 /usr/bin/schema-registry-stop-service -R && \
+  chown -R :0 /etc/schema-registry/schema-registry.properties -R && \
+  chown -R :0 /var/log/confluent -R && \
+  yum clean all -y
 
-COPY ./confluent.repo /etc/yum.repos.d/
-
-RUN yum clean all && yum install confluent-platform-2.12 -y
-
-COPY ./schema-registry.properties /etc/schema-registry/
-
+COPY ./config/schema-registry.properties /etc/schema-registry/ <<--- You may not need this you can probably remove it.
 
 CMD ["schema-registry-start", "/etc/schema-registry/schema-registry.properties"]
